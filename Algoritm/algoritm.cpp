@@ -21,7 +21,7 @@ int main() {
 
 	cout << cnt;*/
 
-	int hou = 0, min = 0, sec = 0, N;
+	/*int hou = 0, min = 0, sec = 0, N;
 	cin >> N;
 
 	while (N >= 60) {
@@ -35,5 +35,32 @@ int main() {
 
 	sec = N;
 
-	cout << hou << " " << min << " " << sec;
+	cout << hou << " " << min << " " << sec;*/
+
+	int hor, ver;
+	cin >> hor >> ver;
+
+	for (int i = 1; i <= ver; i++) {
+		for (int j = 1; j <= hor; j++) {
+			if (i == 1 || i == ver) {
+				if (j == 1 || j == hor) {
+					cout << "+";
+				}
+				else {
+					cout << "-";
+				}
+			}
+			else {
+				if (j == 1 || j == hor) {
+					cout << "|";
+				}
+				else {
+					cout << " ";
+				}
+			}
+		}
+
+		cout << endl;
+	}
+
 }
