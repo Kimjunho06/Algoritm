@@ -70,9 +70,9 @@ int main() {
 	cin >> n;
 
 	for (int a = 1; a <= n; a++) {
-		for (int b = a; a <= n; b++) {
+		for (int b = a; b <= n; b++) {
 			c = n - (a + b);
-			if (a + b > c && a + b + c == n) {
+			if (a + b > c && c >= b) {
 				cnt++;
 				cout << a << " " << b << " " << c << endl;
 			}
