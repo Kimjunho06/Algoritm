@@ -15,17 +15,17 @@ int main() {
 	/*int n, cnt = 0;
 	cin >> n;
 
-	for (int i = 2; i <= n; i++) {
+	for (int i = 2; i <= n; i++) {   => n/2
 		if (n % i == 0) cnt++;
 	}
 
 	cout << cnt;*/
 
-	/*int hou = 0, min = 0, sec = 0, N;
-	cin >> N;
+	/*int hou = 0, min = 0, sec = 0;
+	cin >> sec;
 
-	while (N >= 60) {
-		N -= 60;
+	while (sec >= 60) {
+		sec -= 60;
 		min++;
 		if (min >= 60) {
 			min -= 60;
@@ -33,11 +33,14 @@ int main() {
 		}
 	}
 
-	sec = N;
+	cout << hou << " " << min << " " << sec;
+	
+	cout << sec / 3600 << sec % 3600 / 60 << sec % 3600 % 60
+	*/
 
-	cout << hou << " " << min << " " << sec;*/
 
-	int hor, ver;
+
+	/*int hor, ver;
 	cin >> hor >> ver;
 
 	for (int i = 1; i <= ver; i++) {
@@ -61,6 +64,20 @@ int main() {
 		}
 
 		cout << endl;
+	}*/
+
+	int n, a, b, c, cnt = 0;
+	cin >> n;
+
+	for (int a = 1; a <= n; a++) {
+		for (int b = a; a <= n; b++) {
+			c = n - (a + b);
+			if (a + b > c && a + b + c == n) {
+				cnt++;
+				cout << a << " " << b << " " << c << endl;
+			}
+		}
 	}
+	if (cnt == 0) cout << "-1";
 
 }
