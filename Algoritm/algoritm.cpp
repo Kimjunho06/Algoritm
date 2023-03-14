@@ -1,9 +1,14 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
+int n;
+void f1(int);
+void f2(int);
+
 int main() {
+#pragma region Àç±ÍÇÔ¼ö Àü ÄÚÅ×
+
 	/*int a, b, max = 0;
 	for (int i = 0; i < 3; i++) {
 		cin >> a >> b;
@@ -106,7 +111,22 @@ int main() {
 
 	for (int a : ans) {
 		cout << a << endl;
-	}*/
+	}
+	
+
+
+	int f(int x){
+		int rank = 0;
+
+		for (int i = 0; i < n; i++){
+			if (arr[x] < arr[i]){
+				rank++;
+			}
+		}
+
+		return rank;
+	}
+	*/
 
 	/*int N[5][5];
 	int sum = 0, max = 0;
@@ -131,7 +151,7 @@ int main() {
 
 	cout << max;*/
 
-	vector<int> N;
+	/*vector<int> N;
 
 	for (int i = 0; i < 3; i++) {
 		int data;
@@ -152,5 +172,27 @@ int main() {
 
 	for (int a : N) {
 		cout << a << " ";
-	}
+	}*/
+
+#pragma endregion
+
+//´Ü¼ø Àç±Í, ´ÙÁß Àç±Í, º¹ÇÕ Àç±Í
+	/*cin >> n;
+	f1(1);
+	f2(n);*/
+
+	
+}
+
+void f1(int x) { // »óÇâ½Ä Àç±Í - ´Ü¼ø Àç±Í
+	if (x > n) 
+		return;
+	cout << x << endl;
+	f1(x+1);
+}
+
+void f2(int x) { // ÇÏÇâ½Ä Àç±Í - ´Ü¼ø Àç±Í
+	if (x <= 0) return;
+	cout << x;
+	f2(x - 1);
 }
