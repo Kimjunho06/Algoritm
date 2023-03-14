@@ -108,7 +108,7 @@ int main() {
 		cout << a << endl;
 	}*/
 
-	int N[5][5];
+	/*int N[5][5];
 	int sum = 0, max = 0;
 
 	for (int i = 0; i < 5; i++) {
@@ -129,5 +129,28 @@ int main() {
 		}
 	}	
 
-	cout << max;
+	cout << max;*/
+
+	vector<int> N;
+
+	for (int i = 0; i < 3; i++) {
+		int data;
+		cin >> data;
+
+		N.push_back(data);
+	}
+
+	for (int i = N.size(); i > 0; i--) {
+		for (int j = 0; j < i - 1; j++) {
+			if (N[j] > N[j + 1]) {
+				int tmp = N[j];
+				N[j] = N[j + 1];
+				N[j + 1] = tmp;
+			}
+		}
+	}
+
+	for (int a : N) {
+		cout << a << " ";
+	}
 }
