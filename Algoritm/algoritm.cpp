@@ -83,7 +83,7 @@ int main() {
 	if (cnt == 0) cout << "-1";
 	*/
 
-	int N, data;
+	/*int N, data;
 	cin >> N;
 
 	vector<int> sel;
@@ -106,5 +106,28 @@ int main() {
 
 	for (int a : ans) {
 		cout << a << endl;
+	}*/
+
+	int N[5][5];
+	int sum = 0, max = 0;
+
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			cin >> N[i][j];
+		}
 	}
+	for (int s = 0; s < 3; s++) {
+		for (int k = 0; k < 3; k++) {
+			for (int i = 0 + k; i < 3 + k; i++) {
+				for (int j = 0 + s; j < 3 + s; j++) {
+					sum += N[i][j];
+				}
+			}
+
+			if (sum > max) max = sum;
+			sum = 0;
+		}
+	}	
+
+	cout << max;
 }
