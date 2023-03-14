@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -66,6 +67,7 @@ int main() {
 		cout << endl;
 	}*/
 
+	/*
 	int n, a, b, c, cnt = 0;
 	cin >> n;
 
@@ -79,5 +81,30 @@ int main() {
 		}
 	}
 	if (cnt == 0) cout << "-1";
+	*/
 
+	int N, data;
+	cin >> N;
+
+	vector<int> sel;
+	vector<int> ans;
+
+	for (int i = 0; i < N; i++) {
+		cin >> data;
+		sel.push_back(data);
+
+		ans.push_back(N);
+	}
+
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			if (i == j) continue;
+			if (sel[i] >= sel[j]) ans[i]--;
+
+		}
+	}
+
+	for (int a : ans) {
+		cout << a << endl;
+	}
 }
