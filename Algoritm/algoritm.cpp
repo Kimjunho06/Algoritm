@@ -14,14 +14,18 @@ void f3(int);
 //int nums[200] = { 1, 2, };
 //
 //int save[201];
-int n, k, m;
 
-int s(int x, int y, int m) {
-	if (x > n || y >= k || x == m) return 0;
+int Cbn, odr1, odr2, mvCbn, cnt;
+//찾아갈 위치, 현재 열려있는 두 캐비넷
+void f(int findPos, int openCbn1, int openCbn2) {
 
-	if (x == n) return 1;
+	// 찾아야 하는 위치랑 가까운 곳을 찾고 그 차이만큼 카운트를 더해주면 됨
 
-	return s(x + 1, y + 1, m) + s(x + 2, y + 1, m) + s(x + 3, y + 1, m);
+	// 바꿀때마다 열려있는 캐비넷을 바꿔줘야함
+	odr1 = openCbn1;
+	odr2 = openCbn2;
+	cnt++;
+	f(findPos, odr1, odr2);
 }
 
 int main() {
@@ -195,8 +199,14 @@ int main() {
 #pragma endregion
 
 //단순 재귀, 다중 재귀, 복합 재귀
-	cin >> n >> m >> k;
-	cout << s(0, 0, m);	
+
+	cin >> Cbn >> odr1 >> odr2 >> mvCbn;
+	
+	for (int i = 0; i < mvCbn; i++) {
+		int data;
+		cin >> data;
+		f(data, odr1, odr2);
+	}
 }
 //int f(int x) { // 피보나치 반복 줄이기 (메모이제이션)
 //	if (x <= 2) return 1;
