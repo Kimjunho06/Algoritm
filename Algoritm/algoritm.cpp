@@ -14,29 +14,14 @@ void f3(int);
 //int nums[200] = { 1, 2, };
 //
 //int save[201];
-int n, k;
+int n, k, m;
 
-int s(int x, int y, int before) {
-	if (x > n || y >= k) return 0;
+int s(int x, int y, int m) {
+	if (x > n || y >= k || x == m) return 0;
 
-	if (x == n) {
-		return 1;
-	}
+	if (x == n) return 1;
 
-	switch (before)
-	{
-		case 1:
-			return s(x + 2, y + 1, 2) + s(x + 3, y + 1, 3);
-			break;
-		case 2:
-			return s(x + 1, y + 1, 1) + s(x + 3, y + 1, 3);
-			break;
-		case 3:
-			return s(x + 2, y + 1, 2) + s(x + 1, y + 1, 1);
-			break;
-	}
-
-	return s(x + 1, y + 1, 1) + s(x + 2, y + 1, 2) + s(x + 3, y + 1, 3);
+	return s(x + 1, y + 1, m) + s(x + 2, y + 1, m) + s(x + 3, y + 1, m);
 }
 
 int main() {
@@ -210,8 +195,8 @@ int main() {
 #pragma endregion
 
 //단순 재귀, 다중 재귀, 복합 재귀
-	cin >> n >> k;
-	cout << s(0, 0, 0);	
+	cin >> n >> m >> k;
+	cout << s(0, 0, m);	
 }
 //int f(int x) { // 피보나치 반복 줄이기 (메모이제이션)
 //	if (x <= 2) return 1;
