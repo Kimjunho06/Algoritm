@@ -14,21 +14,29 @@ void f3(int);
 //int nums[200] = { 1, 2, };
 //
 //int save[201];
-int n, k, cnt;
-//현재 위치, 계단 오른 카운트
-void s(int x, int y) {
-	// 더 이상 계단 없을 때
-	if (x > n || y >= k) return;
+int n, k;
 
-	//계단 오른 경우 카운트 증가
+int s(int x, int y, int before) {
+	if (x > n || y >= k) return 0;
+
 	if (x == n) {
-		cnt++;
-		return;
+		return 1;
 	}
 
-	s(x + 1, y + 1);
-	s(x + 2, y + 1);
+	switch (before)
+	{
+		case 1:
+			return s(x + 2, y + 1, 2) + s(x + 3, y + 1, 3);
+			break;
+		case 2:
+			return s(x + 1, y + 1, 1) + s(x + 3, y + 1, 3);
+			break;
+		case 3:
+			return s(x + 2, y + 1, 2) + s(x + 1, y + 1, 1);
+			break;
+	}
 
+	return s(x + 1, y + 1, 1) + s(x + 2, y + 1, 2) + s(x + 3, y + 1, 3);
 }
 
 int main() {
@@ -203,8 +211,7 @@ int main() {
 
 //단순 재귀, 다중 재귀, 복합 재귀
 	cin >> n >> k;
-	s(0, 0);
-	cout << cnt;
+	cout << s(0, 0, 0);	
 }
 //int f(int x) { // 피보나치 반복 줄이기 (메모이제이션)
 //	if (x <= 2) return 1;
