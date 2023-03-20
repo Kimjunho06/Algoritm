@@ -2,9 +2,34 @@
 #include <vector>
 using namespace std;
 
-int n;
+/*
+int a, b;
 void f1(int);
 void f2(int);
+void f3(int);
+*/
+
+//int f(int x);
+//int N;
+//int nums[200] = { 1, 2, };
+//
+//int save[201];
+int n, k, cnt;
+//현재 위치, 계단 오른 카운트
+void s(int x, int y) {
+	// 더 이상 계단 없을 때
+	if (x > n || y >= k) return;
+
+	//계단 오른 경우 카운트 증가
+	if (x == n) {
+		cnt++;
+		return;
+	}
+
+	s(x + 1, y + 1);
+	s(x + 2, y + 1);
+
+}
 
 int main() {
 #pragma region 재귀함수 전 코테
@@ -177,13 +202,18 @@ int main() {
 #pragma endregion
 
 //단순 재귀, 다중 재귀, 복합 재귀
-	/*cin >> n;
-	f1(1);
-	f2(n);*/
-
-	
+	cin >> n >> k;
+	s(0, 0);
+	cout << cnt;
 }
+//int f(int x) { // 피보나치 반복 줄이기 (메모이제이션)
+//	if (x <= 2) return 1;
+//
+//	return save[x] = f(x - 1) + f(x - 2);
+//}
 
+
+/*
 void f1(int x) { // 상향식 재귀 - 단순 재귀
 	if (x > n) 
 		return;
@@ -196,3 +226,10 @@ void f2(int x) { // 하향식 재귀 - 단순 재귀
 	cout << x;
 	f2(x - 1);
 }
+
+void f3(int x) {
+	if (x > b) return;
+	if (x % 2 != 0) cout << x << " ";
+	f3(x + 1);
+}
+*/
