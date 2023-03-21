@@ -4,18 +4,11 @@ using namespace std;
 
 
 int main() {
-	int n;
-	cin >> n;
-
-	if (n % 2 == 0) {
-		n /= 2;
-	}
-	else if (n % 2 == 1) {
-		n -= 1;
-		n /= 2;
-	}
-
-	cout << n;
+	int n, m;
+	cin >> n >> m;
+	if (n == 1) cout << 0;
+	else if (n == 2) cout << m;
+	else if (n > 1) cout << m * 2;
 }
 
 
