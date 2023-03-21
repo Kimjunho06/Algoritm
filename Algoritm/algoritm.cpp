@@ -2,6 +2,24 @@
 #include <vector>
 using namespace std;
 
+
+int main() {
+	int n, m;
+	cin >> n >> m;
+
+	if (n == 1 || m == 1) cout << "Yes";
+	else if (n <= 2 && m <= 2) cout << "YES";
+	else cout << "NO";
+
+}
+
+
+
+
+
+
+#pragma region 재귀
+
 /*
 int a, b;
 void f1(int);
@@ -15,25 +33,25 @@ void f3(int);
 //
 //int save[201];
 
-int Cbn, odr1, odr2, m;
-int arr[21];
-int answer = 9999;
-//찾아갈 위치, 현재 열려있는 두 캐비넷, 카운팅(제한사항)
-void f(int openCbn1, int openCbn2, int dis, int cnt) {
+//int Cbn, odr1, odr2, m;
+//int arr[21];
+//int answer = 9999;
+////찾아갈 위치, 현재 열려있는 두 캐비넷, 카운팅(제한사항)
+//void f(int openCbn1, int openCbn2, int dis, int cnt) {
+//
+//	if (m == cnt) {
+//		answer = min(answer, dis);
+//		return;
+//	}
+//
+//	// 찾아야 하는 위치랑 가까운 곳을 찾고 그 차이만큼 카운트를 더해주면 됨
+//	// 바꿀때마다 열려있는 캐비넷을 바꿔줘야함
+//
+//	f(arr[cnt], openCbn2,dis + abs(arr[cnt] - openCbn1), cnt + 1);
+//	f(openCbn1,arr[cnt], dis + abs(arr[cnt] - openCbn2), cnt + 1);
+//}
 
-	if (m == cnt) {
-		answer = min(answer, dis);
-		return;
-	}
-
-	// 찾아야 하는 위치랑 가까운 곳을 찾고 그 차이만큼 카운트를 더해주면 됨
-	// 바꿀때마다 열려있는 캐비넷을 바꿔줘야함
-
-	f(arr[cnt], openCbn2,dis + abs(arr[cnt] - openCbn1), cnt + 1);
-	f(openCbn1,arr[cnt], dis + abs(arr[cnt] - openCbn2), cnt + 1);
-}
-
-int main() {
+#pragma endregion
 #pragma region 재귀함수 전 코테
 
 	/*int a, b, max = 0;
@@ -67,7 +85,7 @@ int main() {
 	}
 
 	cout << hou << " " << min << " " << sec;
-	
+
 	cout << sec / 3600 << sec % 3600 / 60 << sec % 3600 % 60
 	*/
 
@@ -139,7 +157,7 @@ int main() {
 	for (int a : ans) {
 		cout << a << endl;
 	}
-	
+
 
 
 	int f(int x){
@@ -174,7 +192,7 @@ int main() {
 			if (sum > max) max = sum;
 			sum = 0;
 		}
-	}	
+	}
 
 	cout << max;*/
 
@@ -203,19 +221,9 @@ int main() {
 
 #pragma endregion
 
-//단순 재귀, 다중 재귀, 복합 재귀
+	//단순 재귀, 다중 재귀, 복합 
+#pragma region 재귀
 
-	cin >> Cbn;
-	cin >> odr1 >> odr2;
-	cin >> m;
-	
-	for (int i = 0; i < m; i++) {
-		cin >> arr[i];
-	}
-
-	f(odr1, odr2, 0, 0);
-	cout << answer;
-}
 //int f(int x) { // 피보나치 반복 줄이기 (메모이제이션)
 //	if (x <= 2) return 1;
 //
@@ -225,7 +233,7 @@ int main() {
 
 /*
 void f1(int x) { // 상향식 재귀 - 단순 재귀
-	if (x > n) 
+	if (x > n)
 		return;
 	cout << x << endl;
 	f1(x+1);
@@ -243,3 +251,4 @@ void f3(int x) {
 	f3(x + 1);
 }
 */
+#pragma endregion
