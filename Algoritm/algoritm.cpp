@@ -4,30 +4,18 @@ using namespace std;
 
 int main()
 {
-	string a = "";
-	char b = ' ';
-	cin >> a;
-	int max = 0, cur = 0;
+	int N;
+	cin >> N;
 
-
-	for (int i = 0; i < a.size(); i++) a[i] = toupper(a[i]);
-
-	for (int i = 0; i < 26; i++)
-	{
-		cur = 0;
-		for (int j = 0; j < a.size(); j++) {
-			if ((int)a[j] - 65 == i) cur++;
+	for (int i = N; i > 0; i--) {
+		for (int j = 0; j < i-1; j++) {
+			cout << " ";
 		}
-
-		if (max < cur)
-		{
-			max = cur;
-			b = char(i + 65);
+		for (int j = 0; j <= N-i; j++) {
+			cout << "*";
 		}
-		else if (max == cur) b = '?';
+		cout << "\n";
 	}
-
-	cout << b;
 }
 
 
