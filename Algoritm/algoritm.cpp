@@ -4,18 +4,16 @@ using namespace std;
 
 int main()
 {
-	int N;
-	cin >> N;
+	int sum = 0;
 
-	for (int i = N; i > 0; i--) {
-		for (int j = 0; j < i-1; j++) {
-			cout << " ";
-		}
-		for (int j = 0; j <= N-i; j++) {
-			cout << "*";
-		}
-		cout << "\n";
+	for (int i = 0; i < 5; i++) {
+		int data;
+		cin >> data;
+
+		sum += data * data;
 	}
+
+	cout << sum % 10;
 }
 
 
