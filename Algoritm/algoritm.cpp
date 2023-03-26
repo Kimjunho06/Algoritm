@@ -1,16 +1,34 @@
 #include <iostream>
-#include <vector>
+
 using namespace std;
 
+int main()
+{
+	string a = "";
+	char b = ' ';
+	cin >> a;
+	int max = 0, cur = 0;
 
-int main() {
-	int n, m;
-	cin >> n >> m;
-	if (n == 1) cout << 0;
-	else if (n == 2) cout << m;
-	else if (n > 1) cout << m * 2;
+
+	for (int i = 0; i < a.size(); i++) a[i] = toupper(a[i]);
+
+	for (int i = 0; i < 26; i++)
+	{
+		cur = 0;
+		for (int j = 0; j < a.size(); j++) {
+			if ((int)a[j] - 65 == i) cur++;
+		}
+
+		if (max < cur)
+		{
+			max = cur;
+			b = char(i + 65);
+		}
+		else if (max == cur) b = '?';
+	}
+
+	cout << b;
 }
-
 
 
 
