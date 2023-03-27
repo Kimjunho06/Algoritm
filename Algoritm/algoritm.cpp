@@ -2,24 +2,46 @@
 
 using namespace std;
 
+
 int main()
 {
-	int sum = 0;
-
-	for (int i = 0; i < 5; i++) {
-		int data;
-		cin >> data;
-
-		sum += data * data;
+	string str;
+	clock_t start, end;
+	int n;
+	cin >> n;
+	start = clock();
+	for (int i = 0; i < n; i++) {
+		str += "X";
+		//str = str + "X";
 	}
-
-	cout << sum % 10;
+	end = clock();
+	cout << end - start << endl;
+	return 0;
 }
 
+/*
+	1. endl vs "\n|
+	2. ios_base::sync_with_stdio(false);
+	3. cin.tie(nullptr), cout.tie(nullptr);
+
+	빅오 표기 - 최악의 실행시간 표기
+	오메가 표기 - 최상의 실행시간 표기
+	세타 표기 - 평균 실행시간 표기
+
+	가장 영향을 미치는 것이 괄호 안에 들어감
+	O(1), O(n), O(log2n), O(Nlog2N), O(N^2), O(N^3),O(2^n)
+*/
 
 
 
-
+/*int sum(int x) {
+	int sum = 0;
+	for (int i = 1; i <= x; i++) {
+		sum += i;
+	}
+	return sum;
+	//return (n * (n+1) /2)
+}*/
 #pragma region 재귀
 
 /*
