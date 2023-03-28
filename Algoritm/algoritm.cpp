@@ -4,7 +4,7 @@
 using namespace std;
 
 vector<int> v;
-int k, n;
+int k, n; // k : 나무 수, n = 가져갈 나무 m
 int vn;
 long long low, mid, high;
 long long cnt;
@@ -26,12 +26,14 @@ int main()
 	while (low <= high) {
 		mid = (low + high) / 2;
 		
-		cnt = 0;
+		cnt = 0; // 가져간 미터
 		for (int i = 0; i < k; i++) {
-			cnt += v[i] / mid;
+			if (v[i] > mid) {
+				cnt += v[i] - mid;
+			}
 		}
 
-		if (cnt >= n) { // 많이 잘랐다
+		if (cnt >= n) { // 가진 미터 이상
 			low = mid + 1;
 			if (result < mid) {
 				result = mid;
@@ -42,7 +44,7 @@ int main()
 		}
 	}
 
-	cout << result;
+	cout << result; // 최대로 가져간 머리
 
 	/*
 		1. 0~최대값 중앙을 본다
