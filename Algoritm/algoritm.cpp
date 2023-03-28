@@ -4,8 +4,8 @@
 
 using namespace std;
 
-int a[100001];
-int b[100001];
+//int a[100001];
+//int b[100001];
 
 //int n, vn;
 //int m, vm;
@@ -27,59 +27,60 @@ int b[100001];
 
 int main()
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-
-	/*cin >> n;
-	for (int i = 0; i < n; i++) {
-		cin >> vn;
-		v.push_back(vn);
-	}
-	sort(v.begin(), v.end());
-	cin >> m;
-	for (int i = 0; i < m; i++) {
-		cin >> vm;
-		cout << bisearch(vm) << "\n";
-	}*/
-	int n, m;
-	int here, low, high, mid;
-	cin >> n;
-	for (int i = 0; i < n; i++) {
-		cin >> a[i];
-	}
-	cin >> m;
-	for (int i = 0; i < m; i++) {
-		cin >> b[i];
-	}
-
-	sort(a, a + n);
-	int cnt = 0;
-
-	for (int i = 0; i < m; i++) {
-		here = b[i];
-		low = 0;
-		high = n - 1;
-		cnt = 0;
-		while (low <= high)
-		{
-			mid = (low + high) / 2;
-
-			if (here == a[mid]) {
-				cnt++;
-				break;
-			}
-			else if (here < a[mid]) {
-				high = mid - 1;
-			}
-			else if (here > a[mid]) {
-				low = mid + 1;
-			}
-		}
-		cout << cnt << endl;
-	}
+	
 }
 
+	//ios_base::sync_with_stdio(false);
+	//cin.tie(0);
+	//cout.tie(0);
+
+	///*cin >> n;
+	//for (int i = 0; i < n; i++) {
+	//	cin >> vn;
+	//	v.push_back(vn);
+	//}
+	//sort(v.begin(), v.end());
+	//cin >> m;
+	//for (int i = 0; i < m; i++) {
+	//	cin >> vm;
+	//	cout << bisearch(vm) << "\n";
+	//}*/
+	//int n, m;
+	//int here, low, high, mid;
+	//cin >> n;
+	//for (int i = 0; i < n; i++) {
+	//	cin >> a[i];
+	//}
+	//cin >> m;
+	//for (int i = 0; i < m; i++) {
+	//	cin >> b[i];
+	//}
+
+	//sort(a, a + n);
+	//int cnt = 0;
+
+	//for (int i = 0; i < m; i++) {
+	//	here = b[i];
+	//	low = 0;
+	//	high = n - 1;
+	//	cnt = 0;
+	//	while (low <= high)
+	//	{
+	//		mid = (low + high) / 2;
+
+	//		if (here == a[mid]) {
+	//			cnt++;
+	//			break;
+	//		}
+	//		else if (here < a[mid]) {
+	//			high = mid - 1;
+	//		}
+	//		else if (here > a[mid]) {
+	//			low = mid + 1;
+	//		}
+	//	}
+	//	cout << cnt << endl;
+	//}
 	//int x, low, high, mid;
 	//cin >> x;
 
