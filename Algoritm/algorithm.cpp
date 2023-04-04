@@ -1,32 +1,36 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-int main() {
-	int n;
-	cin >> n;
+int main()
+{
+	int N, k, cnt = 0, result = 0;
+	cin >> N >> k;
 
-	for (int i = 0; i < n * 2; i++) {
-		if (i < n) {
-			for (int j = n - (i + 1); j > 0; j--) {
-				cout << " ";
-			}
-			cout << "*";
-			for (int j = 0; j < (i * 2); j++) {
-				cout << " ";
-			}
-			cout << "*";
+	int low, mid, high;
+
+	low = 1; // first index + 1
+	high = k; // last index + 1
+
+	while (low <= high) {
+		mid = (low + high) / 2;
+		cnt = 0;
+
+		for (int i = 1; i <= N; i++) {
+			cnt += min(mid / i, N);
+		}
+
+		if (cnt < k) {
+			low = mid + 1;
 		}
 		else {
-			for (int j = 0; j < i - n; j++) {
-				cout << " ";
-			}
-			cout << "*";
-			for (int j = (n * 2) - ((i - (n - 1)) * 2); j > 0; j--) {
-				cout << " ";
-			}
-			cout << "*";
+			result = mid;
+			high = mid - 1;
 		}
-		cout << endl;
 	}
-}	
+
+	cout << result;
+}
+
+// k는 작고 큰지만 판별하는 것

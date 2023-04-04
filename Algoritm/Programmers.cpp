@@ -3,14 +3,22 @@
 using namespace std;
 
 int main() {
-    int n, m;
-    cin >> n >> m;
+	int x, y;
+	cin >> y >> x;
+	int** arr = new int* [y];
+	for (int i = 0; i < y; i++) {
+		arr[i] = new int[x];
+	}
 
-    for (int i = 0; i < n; i++) {
-        int data;
-        cin >> data;
+	for (int i = 0; i < y; i++) {
+		for (int j = 0; j < x; j++) {
+			arr[i][j] = i;
+		}
+	}
 
-        if (m > data) cout << data << " ";
-    }
-
+	for (int i = 0; i < y; i++) {
+		for (int j = 0; j < x; j++) {
+			cout << arr[i][j] << endl;
+		}
+	}
 }
