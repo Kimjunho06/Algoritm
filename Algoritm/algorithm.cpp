@@ -1,18 +1,35 @@
 #include <iostream>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
 int main()
 {
-	int arr[10];
-	int x, y;
-	cin >> x >> y;
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
 
-	// x 이상 y 이하의 값 찾기
-	upper_bound(arr, arr + 10, y) - lower_bound(arr, arr + 10, x);
-	// x의 개수
-	upper_bound(arr, arr + 10, y) - lower_bound(arr, arr + 10, y);
+	int n, data, cnt = 0;
+	vector<int> v;
+	
+	cin >> n;
+	v.push_back(-1);
+	for (int i = 0; i < n; i++) {
+		cin >> data;
+
+		if (v.back() < data) {
+			v.push_back(data);
+			cnt++;
+		}
+		else {
+			vector<int>::iterator iter = lower_bound(v.begin(), v.end(), data);
+			*iter = data;
+		}
+	}
+
+	cout << cnt;
 }
 
-// k는 작고 큰지만 판별하는 것
+// 10 20 10 30 20 50 70 40 50 30 70 10 90
+// 4 5 6 7 1 2 3
+// 1 3 1 2 3 4
