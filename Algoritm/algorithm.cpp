@@ -1,35 +1,73 @@
 #include <iostream>
+#include <algorithm>
+#include <string>
 #include <vector>
 
 using namespace std;
 
-int main()
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-	cout.tie(nullptr);
-
-	int n, data, cnt = 0;
-	vector<int> v;
-	
-	cin >> n;
-	v.push_back(-1);
-	for (int i = 0; i < n; i++) {
-		cin >> data;
-
-		if (v.back() < data) {
-			v.push_back(data);
-			cnt++;
-		}
-		else {
-			vector<int>::iterator iter = lower_bound(v.begin(), v.end(), data);
-			*iter = data;
-		}
-	}
-
-	cout << cnt;
+bool comp(string a, string b) {
+    if (a.length() < b.length()) {
+        return true;
+    }
+    else if (a.length() == b.length()) {
+        if (a < b) {
+            return true;
+        }
+    }
+    return false;
 }
 
-// 10 20 10 30 20 50 70 40 50 30 70 10 90
-// 4 5 6 7 1 2 3
-// 1 3 1 2 3 4
+
+vector<int> solution(vector<string> words, vector<string> queries) {
+    vector<int> answer;
+    
+    vector<string> revwords = words;
+    for (int i = 0; i < revwords.size(); i++) {
+        reverse(revwords[i].begin(), revwords[i].end());
+    }
+
+    sort(words.begin(), words.end(), comp);
+    sort(revwords.begin(), revwords.end(), comp);
+
+    for (int i = 0; i < queries.size(); i++) {
+        int low, high, idx;
+        string strQuery = queries[i];
+
+        if (strQuery[0] == '?') {
+            reverse(strQuery.begin(), strQuery.end());
+            idx = strQuery.find('?');
+            for (int j = idx; j < strQuery.size(); j++) {
+                strQuery[j] = 'a';
+            }
+            low = lower_bound(revwords.begin(), revwords.end(), strQuery, comp) - revwords.begin();
+            
+            for (int j = idx; j < strQuery.size(); j++) {
+                strQuery[j] = 'z';
+            }
+            high = upper_bound(revwords.begin(), revwords.end(), strQuery, comp) - revwords.begin();
+
+        }
+        else {
+            idx = strQuery.find('?');
+            for (int j = idx; j < strQuery.size(); j++) {
+                strQuery[j] = 'a';
+            }
+            low = lower_bound(words.begin(), words.end(), strQuery, comp) - words.begin();
+
+            for (int j = idx; j < strQuery.size(); j++) {
+                strQuery[j] = 'z';
+            }
+            high = upper_bound(words.begin(), words.end(), strQuery, comp) - words.begin();
+
+        }
+        answer.push_back(high - low);
+
+    }
+    return answer;
+}
+
+int main() {
+    vector<string> words = { "frodo", "front", "frost", "frozen", "frame", "kakao" };
+    vector<string> queries = { "fro??", "????o", "fr???", "fro???", "pro?" };
+    //solution(words, queries);
+}
