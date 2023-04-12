@@ -18,10 +18,10 @@
     <ClCompile Include="마름모.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Programmers.cpp">
+    <ClCompile Include="algorithm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="algorithm.cpp">
+    <ClCompile Include="Classalgorithm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
