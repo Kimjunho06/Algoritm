@@ -1,42 +1,43 @@
 #include <iostream>
-#include <stack>
-#include <deque>
+#include <vector>
+#include <queue>
 
 using namespace std;
 
-int main() {
-	deque<int> q;
-	stack<int> s;
-	int N, save = 0;
-	cin >> N;
+vector<int> v;
+queue<int> q;
+int n, w, L, itime, totalW;
+int vn;
 
-	for (int i = 0; i < N; i++) {
-		int skill;
-		cin >> skill;
 
-		s.push(skill);
+int main() {	
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr); cout.tie(nullptr);
+
+	cin >> n >> w >> L;
+
+	for (int i = 0; i < n; i++) {
+		cin >> vn;
+		v.push_back(vn);
 	}
-
-	for (int i = 1; i <= N; i++) {
-		switch (s.top())
+	for (int i = 0; i < n; i++) {
+		
+		while (true)
 		{
-			case 1:
-				q.push_front(i);
+			if (q.size() == w) {
+				totalW -= q.front();
+				q.pop();
+			}
+			if (totalW + v[i] <= L) {
 				break;
-			case 2:
-				save = q.front();
-				q.pop_front();
-				q.push_front(i);
-				q.push_front(save);
-				break;
-			case 3:
-				q.push_back(i);
-				break;
+			}
+			q.push(0);
+			itime++;
 		}
-		s.pop();
+		q.push(v[i]);
+		totalW += v[i];
+		itime++;
 	}
 
-	for (auto a : q) {
-		cout << a << " ";
-	}
+	cout << itime + w;
 }
