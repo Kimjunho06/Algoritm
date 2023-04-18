@@ -1,43 +1,39 @@
 #include <iostream>
-#include <vector>
-#include <queue>
+#include <deque>
 
 using namespace std;
 
-vector<int> v;
-queue<int> q;
-int n, w, L, itime, totalW;
-int vn;
-
-
+deque<int> Adq;
+deque<int> Bdq;
+int result;
+string str;
 int main() {	
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr); cout.tie(nullptr);
+	cin >> str;
 
-	cin >> n >> w >> L;
-
-	for (int i = 0; i < n; i++) {
-		cin >> vn;
-		v.push_back(vn);
-	}
-	for (int i = 0; i < n; i++) {
-		
-		while (true)
-		{
-			if (q.size() == w) {
-				totalW -= q.front();
-				q.pop();
+	for (int i = 0; i < str.size(); i++) {
+		if (str[i] == 'A') 
+			Adq.push_back(i);
+		if (str[i] == 'B') 
+			Bdq.push_back(i);
+		if (str[i] == 'C') {
+			if (!Bdq.empty() && Bdq.front() < i) {
+				Bdq.pop_front();
+				result++;
 			}
-			if (totalW + v[i] <= L) {
-				break;
-			}
-			q.push(0);
-			itime++;
 		}
-		q.push(v[i]);
-		totalW += v[i];
-		itime++;
+
+	}
+	while (!Adq.empty() && !Bdq.empty())
+	{
+		if (Adq.front() < Bdq.front()) {
+			result++;
+			Adq.pop_front();
+			Bdq.pop_front();
+		}
+		else {
+			Bdq.pop_front();
+		}
 	}
 
-	cout << itime + w;
+	cout << result;
 }
