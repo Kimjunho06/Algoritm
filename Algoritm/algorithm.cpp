@@ -1,47 +1,42 @@
 #include <iostream>
-#include <vector>
+#include <stack>
+#include <deque>
 
 using namespace std;
 
 int main() {
-	double N, sum = 0, avg = 0, cnt = 0;
-	double percent = 0;
-	int* save;
+	deque<int> q;
+	stack<int> s;
+	int N, save = 0;
 	cin >> N;
 
 	for (int i = 0; i < N; i++) {
-		sum = 0;
-		avg = 0;
-		cnt = 0;
+		int skill;
+		cin >> skill;
 
-		int count;
-		cin >> count;
-		save = new int[count];
-
-		for (int j = 0; j < count; j++) {
-			int data;
-			cin >> data;
-
-			save[j] = data;
-			sum += data;
-		}
-		avg = sum / count;
-
-		for (int j = 0; j < count; j++) {
-			if (avg < save[j]) {
-				cnt++;
-			}
-		}
-		
-		percent = cnt / count * 100;
-
-		cout << fixed;
-		cout.precision(3);
-		cout << percent << "%" << endl;
-
-
-		
-		delete[] save;
+		s.push(skill);
 	}
 
+	for (int i = 1; i <= N; i++) {
+		switch (s.top())
+		{
+			case 1:
+				q.push_front(i);
+				break;
+			case 2:
+				save = q.front();
+				q.pop_front();
+				q.push_front(i);
+				q.push_front(save);
+				break;
+			case 3:
+				q.push_back(i);
+				break;
+		}
+		s.pop();
+	}
+
+	for (auto a : q) {
+		cout << a << " ";
+	}
 }
