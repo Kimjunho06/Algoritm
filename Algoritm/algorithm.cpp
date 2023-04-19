@@ -1,37 +1,28 @@
 #include <iostream>
-#include <deque>
+#include <vector>
 
 using namespace std;
 
-deque<int> Adq;
-deque<int> Bdq;
-int result;
-string str;
-int main() {	
-	cin >> str;
+int main() {
+	int N, M;
+	int sum = 0, result = 0;
+	vector<int> v;
+	cin >> N >> M;
+	for (int i = 0; i < N; i++) {
+		int data;
+		cin >> data;
 
-	for (int i = 0; i < str.size(); i++) {
-		if (str[i] == 'A') 
-			Adq.push_back(i);
-		if (str[i] == 'B') 
-			Bdq.push_back(i);
-		if (str[i] == 'C') {
-			if (!Bdq.empty() && Bdq.front() < i) {
-				Bdq.pop_front();
-				result++;
-			}
-		}
-
+		v.push_back(data);
 	}
-	while (!Adq.empty() && !Bdq.empty())
-	{
-		if (Adq.front() < Bdq.front()) {
-			result++;
-			Adq.pop_front();
-			Bdq.pop_front();
-		}
-		else {
-			Bdq.pop_front();
+
+	for (int i = 0; i < v.size() - 2; i++) {
+		for (int j = i + 1; j < v.size() - 1; j++) {
+			for (int k = j + 1; k < v.size(); k++) {
+				sum = v[i] + v[j] + v[k];
+				if (sum > result && sum <= M) {
+					result = sum;
+				}
+			}
 		}
 	}
 
