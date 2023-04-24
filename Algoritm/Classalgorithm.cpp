@@ -1,70 +1,48 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <stack>
+#include <cmath>
 
 using namespace std;
-// STL (Standard Template, Library)
-// 벡터, 스택, 페어
-string str1, str2;
-// 결과
-stack<int> ans;
-// 연산
-stack<char> s1, s2;
 
 int main() {
-	cin >> str1 >> str2;
+	float arr[10][10];
+	float avg = 0, min = 100;
+	float result = 0;
 
-	for (int i = 0; i < str1.size(); i++) 
-		s1.push(str1[i]);
-	for (int i = 0; i < str2.size(); i++)
-		s2.push(str2[i]);
-
-	if (s1.size() < s2.size()) {
-		swap(s1, s2);
-	}
-
-	int extra = 0; // 올림수
-	while (!s1.empty() && !s2.empty())
-	{
-		int x = s1.top() - '0';
-		int y = s2.top() - '0';
-		ans.push((x + y + extra) % 10);
-		extra = ((x + y + extra) / 10);
-		s1.pop();
-		s2.pop();
-	}
-
-	if (extra != 0) {
-		if (s1.empty()) {
-			ans.push(extra);
-			extra = 0;
+	for (int i = 0; i < 9; i++) {
+		avg = 0;
+		min = 100;
+		for (int j = 0; j < 9; j++) {
+			cin >> arr[i][j];
+			avg += arr[i][j];
 		}
-		else {
-			while (!s1.empty()) {
-				int x = s1.top() - '0';
-				ans.push((x + extra) % 10);
-				extra = ((x + extra) / 10);
-				s1.pop();
+		avg /= 9;
+		avg = round(avg);
+
+		for (int j = 0; j < 9; j++) {
+			if (abs(avg - arr[i][j]) < min) {
+				min = abs(avg - arr[i][j]);
+				result = arr[i][j];
 			}
 		}
+		cout << avg << " " << result << endl;
 	}
-	else {
-		while (!s1.empty()) {
-			int x = s1.top() - '0';
-			ans.push((x + extra) % 10);
-			extra = ((x + extra) / 10);
-			s1.pop();
+
+	int N, sum = 0;
+	cin >> N;
+	for (int i = 1; i <= N; i++) {
+		sum = i;
+		for (int j = i + 1; j < N; j++) {
+			sum += j;
+			if (sum > N) break;
+			if (sum == N) {
+				while (i - 1 != j) {
+					cout << j;
+					j--;
+					if (i - 1 == j) break;
+					cout << " + ";
+				}
+				cout << " = " << N << endl;
+			}
 		}
-	}
-
-	if (extra != 0) {
-		ans.push(extra);
-	}
-
-	while (!ans.empty())
-	{
-		cout << ans.top();
-		ans.pop();
 	}
 }
