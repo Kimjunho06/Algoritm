@@ -38,32 +38,32 @@
 //}
 #include <iostream>
 #include <map>
+#include <string>
 
 using namespace std;
 
 int main() {
-	int n, m, sum = 0;
-	map <string, int> mp;
-	cin >> n >> m;
-
+	map<string, float> mp;
+	int cnt = 0;
 	string a;
-	for (int i = 0; i < n; i++) {
-		cin >> a;
 
-		mp.insert({ a, 0 });
-	}
-
-	for (int j = 0; j < m; j++) {
-		cin >> a;
-		if (mp.find(a) != mp.end()) {
+	while (getline(cin, a))
+	{
+		// getline(cin, a);
+		cnt++;
+		if (mp.find(a) != mp.end()) { // 찾아지면
 			auto iter = mp.find(a);
 			iter->second++;
+			continue;
 		}
+		mp.insert({ a, 1 });
+		// if (a == "Willow") break;
 	}
+
+	cout << fixed;
+	cout.precision(4);
 
 	for (auto iter : mp) {
-		sum += iter.second;
+		cout << iter.first << " " << (iter.second/cnt) * 100 << "\n";
 	}
-
-	cout << sum;
 }
