@@ -37,8 +37,7 @@
 //	}
 //}
 #include <iostream>
-#include <queue>
-#include <functional>
+#include <set>
 
 using namespace std;
 
@@ -46,30 +45,21 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr); cout.tie(nullptr);
 
-	priority_queue<int, vector<int>, less<int>> pqmax;
-	priority_queue<int, vector<int>, greater<int>> pqmin;
-
-	int n, data;
-	cin >> n;
-
-	for (int i = 0; i < n; i++) {
+	set<int> s;
+	int n, m;
+	cin >> n >> m;
+	for (int i = 0; i < n + m; i++) {
+		int data;
 		cin >> data;
 
-		if (pqmax.size() == pqmin.size()) {
-			pqmax.push(data);
+		if (s.find(data) != s.end()) {
+			s.erase(s.find(data));
+			continue;
 		}
-		else {
-			pqmin.push(data);
-		}
-		if (!pqmax.empty() && !pqmin.empty()) {
-			if (pqmax.top() > pqmin.top()) {
-				int temp = pqmax.top();
-				pqmax.pop();
-				pqmax.push(pqmin.top());
-				pqmin.pop();
-				pqmin.push(temp);
-			}
-		}
-		cout << pqmax.top() << "\n";
+		s.insert(data);
+				
 	}
+
+	cout << s.size();
+
 }
