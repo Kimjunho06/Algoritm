@@ -42,34 +42,28 @@
 using namespace std;
 
 int main() {
-	int N, res = 0;
-	map<string, int> m;
-	cin >> N;
+	int n, m, sum = 0;
+	map <string, int> mp;
+	cin >> n >> m;
 
-	for (int i = 0; i < N; i++) {
-		int rep;
-		cin >> rep;
+	string a;
+	for (int i = 0; i < n; i++) {
+		cin >> a;
 
-		m.clear();
-		res = 1;
+		mp.insert({ a, 0 });
+	}
 
-		for (int j = 0; j < rep; j++) {
-			string clothes, type;
-			cin >> clothes >> type;
-		
-			if (m.find(type) == m.end()) { // 중복이 없는 경우
-				m.insert({type, 2});
-				continue;
-			}
-			
-			auto iter = m.find(type);
+	for (int j = 0; j < m; j++) {
+		cin >> a;
+		if (mp.find(a) != mp.end()) {
+			auto iter = mp.find(a);
 			iter->second++;
 		}
-
-		for (auto iter : m) {
-			res *= iter.second;
-		}
-
-		cout << res - 1 << "\n";
 	}
+
+	for (auto iter : mp) {
+		sum += iter.second;
+	}
+
+	cout << sum;
 }
