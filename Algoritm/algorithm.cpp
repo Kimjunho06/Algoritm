@@ -2,30 +2,17 @@
 
 using namespace std;
 
-int arr[46];
-
-int F(int f, int arr[46]) {
-	if (arr[f] != 0) return arr[f];
-
-	int result = 0;
-
-	if (f <= 2)
-		result = 1;
-	else {
-		result = F(f - 2, arr) + F(f - 1, arr);
-	}
-
-	arr[f] = result;
-
-	return result;
-}
-
 int main() {
 	int n;
 	cin >> n;
 
-	cout << F(n, arr);
- }
+	for (int i = n; i > 0; i--) {
+		for (int j = 0; j < i; j++) {
+			cout << "*";
+		}
+		cout << endl;
+	}
+}
 
 
 
