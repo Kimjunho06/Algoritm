@@ -1,48 +1,22 @@
 #include <iostream>
-#include <string>
-#include <stack>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        string s;
-        stack<char> st;
-        cin >> s;
-        for (int i = 0; i <= s.length(); i++)
-        {
-            if (s[i] == '(')
-            {
-                st.push(s[i]);
-            }
-            else if (s[i] == ')')
-            {
-                if (!st.empty())
-                {
-                    st.pop();
-                }
-                else
-                {
-                    cout << "NO" << endl;
-                    break;
-                }
-            }
-            else if (s[i] == '\0')
-            {
-                if (!st.empty())
-                {
-                    cout << "NO" << endl;
-                    break;
-                }
-                else
-                {
-                    cout << "YES" << endl;
-                }
-            }
-        }
+    int n;
+    vector<int> v;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int data;
+        cin >> data;
+        v.push_back(data);
     }
-    return 0;
+
+    sort(v.begin(), v.end());
+
+    for (auto a : v) {
+        cout << a << endl;
+    }
 }
