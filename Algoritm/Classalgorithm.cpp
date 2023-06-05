@@ -3,21 +3,47 @@
 using namespace std;
 
 int main() {
-	string a, b;
-	int cnt = 0, max = 0;
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr); cout.tie(nullptr);
 
-	cin >> a >> b;
+	bool v[22];
+	string str;
+	int n, data;
 
-	for (int i = 0; i <= b.size() - a.size(); i++) {
-		cnt = 0;
-		for (int j = 0; j < a.size(); j++) {
-			if (a[j] == b[j+ i]) {
-				cnt++;
-			}
-		}
+	cin >> n;
 
-		if (cnt > max) max = cnt;
+	for (int i = 1; i <= 20; i++) {
+		v[i] = false;
 	}
 
-	cout << a.size() - max;
+	for (int i = 0; i < n; i++) {
+		cin >> str;
+
+		if (str == "add") {
+			cin >> data;
+			v[data] = true;
+		}
+		else if (str == "remove") {
+			cin >> data;
+			v[data] = false;
+		}
+		else if (str == "check") {
+			cin >> data;
+			cout << v[data] << "\n";
+		}
+		else if (str == "toggle") {
+			cin >> data;
+			v[data] = !v[data];
+		}
+		else if (str == "all") {
+			for (int j = 1; j <= 20; j++) {
+				v[j] = true;
+			}
+		}
+		else if (str == "empty") {
+			for (int j = 1; j <= 20; j++) {
+				v[j] = false;
+			}
+		}
+	}
 }
