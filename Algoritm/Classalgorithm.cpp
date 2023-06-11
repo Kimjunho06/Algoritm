@@ -3,57 +3,22 @@
 using namespace std;
 
 int main() {
-	int n, m, cnt = 0, min = 2500;
-	char answer[2][9][9] = {
-						{"BWBWBWBW",
-						"WBWBWBWB",
-						"BWBWBWBW",
-						"WBWBWBWB",
-						"BWBWBWBW",
-						"WBWBWBWB",
-						"BWBWBWBW",
-						"WBWBWBWB"},
-
-						{"WBWBWBWB",
-						"BWBWBWBW",
-						"WBWBWBWB",
-						"BWBWBWBW",
-						"WBWBWBWB",
-						"BWBWBWBW",
-						"WBWBWBWB",
-						"BWBWBWBW"}
-	};
-
-	cin >> n >> m;
+	int n;
+	int H, W, N;
+	int h, w;
+	cin >> n;
 	
-	char** board = new char* [n];
 	for (int i = 0; i < n; i++) {
-		board[i] = new char[m];
-	}
-
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			cin >> board[i][j];
-		}
-	}
-
-	for (int i = 0; i <= n - 8; i++) {
-		for (int j = 0; j <= m - 8; j++) {
-			for (int k = 0; k < 2; k++) {
-				cnt = 0;
-				for (int s = 0; s < 8; s++) {
-					for (int q = 0; q < 8; q++) {
-						if (board[s+i][q+j] != answer[k][s][q]) {
-							cnt++;
-						}
-					}
-				}
-				if (cnt < min) {
-					min = cnt;
-				}
+		cin >> H >> W >> N;
+		h = 0; w = 1;
+		while (N--)
+		{
+			++h;
+			if (h > H) {
+				h = 1;
+				w++;
 			}
 		}
+		cout << h * 100 + w << endl;
 	}
-
-	cout << min;
 }
