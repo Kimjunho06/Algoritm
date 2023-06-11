@@ -3,47 +3,57 @@
 using namespace std;
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr); cout.tie(nullptr);
+	int n, m, cnt = 0, min = 2500;
+	char answer[2][9][9] = {
+						{"BWBWBWBW",
+						"WBWBWBWB",
+						"BWBWBWBW",
+						"WBWBWBWB",
+						"BWBWBWBW",
+						"WBWBWBWB",
+						"BWBWBWBW",
+						"WBWBWBWB"},
 
-	bool v[22];
-	string str;
-	int n, data;
+						{"WBWBWBWB",
+						"BWBWBWBW",
+						"WBWBWBWB",
+						"BWBWBWBW",
+						"WBWBWBWB",
+						"BWBWBWBW",
+						"WBWBWBWB",
+						"BWBWBWBW"}
+	};
 
-	cin >> n;
-
-	for (int i = 1; i <= 20; i++) {
-		v[i] = false;
+	cin >> n >> m;
+	
+	char** board = new char* [n];
+	for (int i = 0; i < n; i++) {
+		board[i] = new char[m];
 	}
 
 	for (int i = 0; i < n; i++) {
-		cin >> str;
+		for (int j = 0; j < m; j++) {
+			cin >> board[i][j];
+		}
+	}
 
-		if (str == "add") {
-			cin >> data;
-			v[data] = true;
-		}
-		else if (str == "remove") {
-			cin >> data;
-			v[data] = false;
-		}
-		else if (str == "check") {
-			cin >> data;
-			cout << v[data] << "\n";
-		}
-		else if (str == "toggle") {
-			cin >> data;
-			v[data] = !v[data];
-		}
-		else if (str == "all") {
-			for (int j = 1; j <= 20; j++) {
-				v[j] = true;
-			}
-		}
-		else if (str == "empty") {
-			for (int j = 1; j <= 20; j++) {
-				v[j] = false;
+	for (int i = 0; i <= n - 8; i++) {
+		for (int j = 0; j <= m - 8; j++) {
+			for (int k = 0; k < 2; k++) {
+				cnt = 0;
+				for (int s = 0; s < 8; s++) {
+					for (int q = 0; q < 8; q++) {
+						if (board[s+i][q+j] != answer[k][s][q]) {
+							cnt++;
+						}
+					}
+				}
+				if (cnt < min) {
+					min = cnt;
+				}
 			}
 		}
 	}
+
+	cout << min;
 }
