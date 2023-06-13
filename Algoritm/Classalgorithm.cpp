@@ -3,22 +3,25 @@
 using namespace std;
 
 int main() {
-	int n;
-	int H, W, N;
-	int h, w;
-	cin >> n;
+	float a, b, c;
+	while (true)
+	{
+		cin >> a >> b >> c;
+		if (a == 0 && b == 0 && c == 0) break;
 	
-	for (int i = 0; i < n; i++) {
-		cin >> H >> W >> N;
-		h = 0; w = 1;
-		while (N--)
-		{
-			++h;
-			if (h > H) {
-				h = 1;
-				w++;
-			}
+		if ((a * a) + (b * b) == c * c) {
+			cout << "right";
 		}
-		cout << h * 100 + w << endl;
+		else if((b * b) + (c * c) == a * a) {
+			cout << "right";
+		}
+		else if ((a * a) + (c * c) == b * b) {
+			cout << "right";
+		}
+		else {
+			cout << "wrong";
+		}
+
+		cout << endl;
 	}
 }
