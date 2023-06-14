@@ -3,25 +3,24 @@
 using namespace std;
 
 int main() {
-	float a, b, c;
-	while (true)
-	{
-		cin >> a >> b >> c;
-		if (a == 0 && b == 0 && c == 0) break;
+	int n, cnt, res = 0;
+	cin >> n;
 	
-		if ((a * a) + (b * b) == c * c) {
-			cout << "right";
-		}
-		else if((b * b) + (c * c) == a * a) {
-			cout << "right";
-		}
-		else if ((a * a) + (c * c) == b * b) {
-			cout << "right";
-		}
-		else {
-			cout << "wrong";
-		}
+	for (int i = 0; i < n; i++) {
+		int data;
+		cin >> data;
 
-		cout << endl;
+		cnt = 0;
+		for (int j = 1; j < data; j++) {
+			if (cnt == 2) break;
+			if (data % j == 0) {
+				cnt++;
+			}
+		}
+		if (cnt < 2 && data >= 2) {
+			res++;
+		}
 	}
+
+	cout << res;
 }
