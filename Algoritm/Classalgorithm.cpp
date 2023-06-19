@@ -1,12 +1,16 @@
 #include <iostream>
+
 #include <map>
-#include <set>
 #include <string>
 
 using namespace std;
 
 int main() {
-	/*map<string, int> map;
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr); cout.tie(nullptr);
+
+	map<int, string> mpint;
+	map<string, int> mpstr;
 	int n, m;
 
 	cin >> n >> m;
@@ -14,44 +18,20 @@ int main() {
 		string str;
 		cin >> str;
 
-		map.insert({ str, i + 1 });
+		mpint.insert({ i + 1, str });
+		mpstr.insert({ str, i + 1 });
 	}
-
+	
 	for (int i = 0; i < m; i++) {
 		string str;
 		cin >> str;
 
-		if (str[i] >= '0' && str[i] <= '9') {
+		if (str[0] >= '0' && str[0] <= '9') {
 			int istr = stoi(str);
-
-			cout << map.begin() + istr;
+			cout << mpint.find(istr)->second << "\n";
 		}
 		else {
-			cout << map.find(str)->second << endl;
-		}
-	}*/
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr); cout.tie(nullptr);
-
-	set<int> set;
-	int n, m;
-	int data;
-	cin >> n;
-
-	for (int i = 0; i < n; i++) {
-		cin >> data;
-		set.insert(data);
-	}
-
-	cin >> m;
-
-	for (int i = 0; i < m; i++) {
-		cin >> data;
-		if (set.find(data) != set.end()) {
-			cout << 1 << " ";
-		}
-		else {
-			cout << 0 << " ";
+			cout << mpstr.find(str)->second << "\n";
 		}
 	}
 }
