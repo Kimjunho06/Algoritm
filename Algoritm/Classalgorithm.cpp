@@ -1,7 +1,5 @@
 #include <iostream>
-
-#include <map>
-#include <string>
+#include <unordered_map>
 
 using namespace std;
 
@@ -9,29 +7,34 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr); cout.tie(nullptr);
 
-	map<int, string> mpint;
-	map<string, int> mpstr;
-	int n, m;
-
-	cin >> n >> m;
-	for (int i = 0; i < n; i++) {
-		string str;
-		cin >> str;
-
-		mpint.insert({ i + 1, str });
-		mpstr.insert({ str, i + 1 });
-	}
+	unordered_map<char, int> unmp;
+	string str;
+	bool check;
+	int n, cnt = 0;
 	
-	for (int i = 0; i < m; i++) {
-		string str;
-		cin >> str;
+	cin >> n;
 
-		if (str[0] >= '0' && str[0] <= '9') {
-			int istr = stoi(str);
-			cout << mpint.find(istr)->second << "\n";
+	for (int i = 0; i < n; i++) {
+		cin >> str;
+		check = true;
+		unmp.clear();
+
+		for (int j = 0; j < str.size(); j++) {
+			if (unmp.find(str[j]) == unmp.end()) {
+				unmp.insert({ str[j], 0 });
+				while (str[j] == str[j+1])
+				{
+					j++;
+				}
+			}
+			else {
+				check = false;
+				break;
+			}
 		}
-		else {
-			cout << mpstr.find(str)->second << "\n";
-		}
+
+		if (check) cnt++;
 	}
+
+	cout << cnt;
 }
