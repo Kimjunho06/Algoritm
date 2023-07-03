@@ -3,17 +3,22 @@
 using namespace std;
 
 int main() {
-	int A, B, V;
-	int f, b;
-	cin >> A >> B >> V;
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr); cout.tie(nullptr);
 
-	f = A - B;
-	b = V - B;
-
-	if (b % f == 0) {
-		cout << b / f;
+	int arr[10002] = {};
+	int n, input;
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> input;
+		arr[input]++;
 	}
-	else {
-		cout << b / f + 1;
+
+	for (int i = 0; i <= 10001; i++) {
+		while (arr[i]--)
+		{
+			cout << i << "\n";
+		}
 	}
 }
