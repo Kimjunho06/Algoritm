@@ -1,40 +1,36 @@
 #include <iostream>
-#include <unordered_map>
 
 using namespace std;
 
-int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr); cout.tie(nullptr);
+int F(long long f, long long r, long long* arr) {
+	int floor = f - 1 < 0 ? 0 : f - 1;
 
-	unordered_map<char, int> unmp;
-	string str;
-	bool check;
-	int n, cnt = 0;
-	
-	cin >> n;
-
-	for (int i = 0; i < n; i++) {
-		cin >> str;
-		check = true;
-		unmp.clear();
-
-		for (int j = 0; j < str.size(); j++) {
-			if (unmp.find(str[j]) == unmp.end()) {
-				unmp.insert({ str[j], 0 });
-				while (str[j] == str[j+1])
-				{
-					j++;
-				}
+	if (arr[14 * f + r] != 0) {
+		return arr[14 * f + r];
+	}
+	else {
+		for (int i = 1; i <= r; i++) {
+			if (arr[14 * floor + i] == 0) {
+				F(floor, i, arr);
 			}
-			else {
-				check = false;
-				break;
-			}
+			arr[14 * f + r] += arr[14 * floor + i];
 		}
+		return arr[14 * f + r];
+	}
+}
 
-		if (check) cnt++;
+int main() {
+	long long T, floor = 0, room = 0;
+	long long arr[500] = {};
+	cin >> T;
+
+	for (int i = 1; i <= 14; i++) {
+		arr[i] = i;
 	}
 
-	cout << cnt;
+	for (int i = 0; i < T; i++) 
+	{
+		cin >> floor >> room;
+		cout << F(floor, room, arr) << endl;
+	}
 }
