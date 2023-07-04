@@ -2,18 +2,26 @@
 
 using namespace std;
 
-int f(int num) {
-	if (num == 0) return 1;
-
-	return num * f(num - 1);
-}
-
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
+	int n, idx1, idx2;
+	int tmp, answer = 1;
+	int arr[3] = {};
+	cin >> n;
 
-	int n, k;
-	cin >> n >> k;
-	cout << f(n) / f(k) / f(n - k);
-	return 0;
+	arr[0] = 1;
+	for (int i = 0; i < n; i++) {
+		cin >> idx1 >> idx2;
+
+		tmp = arr[idx1-1];
+		arr[idx1-1] = arr[idx2-1];
+		arr[idx2-1] = tmp;
+	}
+
+	for (auto a : arr) {
+		if (a == 1) {
+			cout << answer;
+			return 0;
+		}
+		answer++;
+	}
 }
