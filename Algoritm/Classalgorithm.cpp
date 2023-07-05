@@ -3,25 +3,36 @@
 using namespace std;
 
 int main() {
-	int n, idx1, idx2;
-	int tmp, answer = 1;
-	int arr[3] = {};
-	cin >> n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
 
-	arr[0] = 1;
-	for (int i = 0; i < n; i++) {
-		cin >> idx1 >> idx2;
+    string str, boomstr;
+    string answer, input;
+    bool ck = true;
 
-		tmp = arr[idx1-1];
-		arr[idx1-1] = arr[idx2-1];
-		arr[idx2-1] = tmp;
-	}
+    cin >> str >> boomstr;
 
-	for (auto a : arr) {
-		if (a == 1) {
-			cout << answer;
-			return 0;
-		}
-		answer++;
-	}
+    for (int i = 0; i < str.size(); i++) {
+        answer += str[i];
+        if (answer.size() >= boomstr.size() && answer.back() == boomstr.back()) {
+            ck = true;
+            for (int i = 0; i < boomstr.size(); i++) {
+                if (answer[answer.size() - boomstr.size() + i] != boomstr[i]) {
+                    ck = false;
+                    break;
+                }
+            }
+            if (ck) {
+                answer.resize(answer.size() - boomstr.size());
+            }
+        }
+    }
+
+   
+
+    if (answer.empty()) {
+        answer = "FRULA";
+    }
+
+    cout << answer;
 }
