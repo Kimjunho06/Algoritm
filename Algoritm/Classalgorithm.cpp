@@ -28,8 +28,6 @@ int main() {
         }
     }
 
-   
-
     if (answer.empty()) {
         answer = "FRULA";
     }
