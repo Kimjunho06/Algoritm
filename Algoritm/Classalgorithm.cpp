@@ -6,31 +6,20 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
-    string str, boomstr;
-    string answer, input;
-    bool ck = true;
-
-    cin >> str >> boomstr;
-
-    for (int i = 0; i < str.size(); i++) {
-        answer += str[i];
-        if (answer.size() >= boomstr.size() && answer.back() == boomstr.back()) {
-            ck = true;
-            for (int i = 0; i < boomstr.size(); i++) {
-                if (answer[answer.size() - boomstr.size() + i] != boomstr[i]) {
-                    ck = false;
-                    break;
-                }
+    int n, cnt = 0;
+    cin >> n;
+    for (int i = 666;; i++) {
+        int tmp = i;
+        while (tmp >= 666) {
+            if (tmp % 1000 == 666) {
+                cnt++;
+                break;
             }
-            if (ck) {
-                answer.resize(answer.size() - boomstr.size());
-            }
+            tmp /= 10;
+        }
+        if (n == cnt) {
+            std::cout << i;
+            break;
         }
     }
-
-    if (answer.empty()) {
-        answer = "FRULA";
-    }
-
-    cout << answer;
 }
